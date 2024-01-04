@@ -1,9 +1,17 @@
-import { Query, Resolver, Mutation, Arg } from 'type-graphql';
+import {
+  Query,
+  Resolver,
+  Mutation,
+  Arg,
+  FieldResolver,
+  Root,
+} from 'type-graphql';
 import { CreateUserInput } from '../dtos/inputs/create-user-input';
 import { User } from '../dtos/models/user-model';
+import { Item } from '../dtos/models/Item-model';
 
-@Resolver()
-export class TodoResolver {
+@Resolver(() => User)
+export class ListResolver {
   @Query(() => [User])
   async users() {
     return [];
@@ -16,5 +24,12 @@ export class TodoResolver {
       lastName: data.lastName,
     };
     return user;
+  }
+
+  @FieldResolver(() => Item)
+  async item(@Root() user: User) {
+    return {
+      name: user.name,
+    };
   }
 }

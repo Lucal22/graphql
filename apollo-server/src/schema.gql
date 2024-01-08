@@ -3,22 +3,29 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input CreateItemInput {
+  id: String!
+  itemName: String!
+}
+
 input CreateUserInput {
-  customerId: String!
+  id: String!
   lastName: String!
   name: String!
 }
 
 type Item {
-  item: String!
+  item: User!
+  itemName: String!
 }
 
 type Mutation {
+  createItem(data: CreateItemInput!): Item!
   createUser(data: CreateUserInput!): User!
 }
 
 type Query {
-  users: [User!]!
+  users: [Item!]!
 }
 
 type User {

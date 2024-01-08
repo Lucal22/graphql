@@ -5,5 +5,5 @@ import { Field, ObjectType } from 'type-graphql';
 export class Item {
   @IsString()
   @Field()
-  item: string;
+  itemName: string;
 }
